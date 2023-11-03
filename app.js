@@ -1,21 +1,16 @@
-const http = require('http')
+const express = require('express')
+const app = express()
 
-http.createServer((req, res) =>{
-    
-    res.setHeader('Content-Disposition', 'attachment; filename=lista.csv');
-    res.writeHead(200, {'Content-Type': 'application/csv'});
-
-
-
-    res.write('id, nombre\n');
-    res.write('1, Juan\n');
-    res.write('2, Pedro\n');
-    res.write('3, Luna\n');
-    res.write('4, Javier\n');
-    res.write('5, Raul\n');
-    res.write('6, Fernando\n');
-    res.end();
+app.get('/', (req, res) => {
+  res.send('Pagina inicial')
 })
-.listen(8080);
 
-console.log('escuchando en el puerto', 8080);
+app.get('/saludo', (req, res) => {
+    res.send('Hola')
+  })
+
+  app.get('+', (req, res) => {
+    res.send('404 | page not found')
+  })
+
+app.listen(8080)
