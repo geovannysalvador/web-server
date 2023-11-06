@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 8080;
+app.set('view engine', 'hbs');
 
 //hacer publica la carpeta public
 //servir contenido estatico.
@@ -8,11 +9,15 @@ const port = 8080;
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.send('Pagina inicial')
+    res.render('home')
 });
 
-app.get('/saludo', (req, res) => {
-    res.send('Hola')
+app.get('/generic', (req, res) => {
+    res.sendFile(__dirname + '/public/generic.html')
+});
+
+app.get('/elements', (req, res) => {
+    res.sendFile(__dirname + '/public/elements.html')
 });
 
 app.get('*', (req, res) => {
